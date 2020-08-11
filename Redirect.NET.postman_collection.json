@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "7c8dc579-712a-4bce-981e-5e63ef604f0e",
+		"name": "Redirect.NET",
+		"description": "A simple http redirect link shortener made with ASP.NET Core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add redirect",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "344e91f0-bf9d-4bc7-826c-5b30f201c278",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"RedirectUrl\": \"https://google.com/\",\r\n    \"Password\": \"mysupersecretpassphrasethatshouldbechanged\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/newurl",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"newurl"
+					]
+				},
+				"description": "`PUT /{id}`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get redirect",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e2a2478-876d-46d5-ac61-41ba6fe49639",
+						"exec": [
+							"pm.test(\"Correct redirect\", function () {\r",
+							"    pm.response.to.have.status(302);\r",
+							"    pm.response.to.have.header(\"location\", \"https://google.com/\");\r",
+							"    pm.response.to.not.have.body;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/newurl",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"newurl"
+					]
+				},
+				"description": "`GET /{id}`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all redirects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b46a0ae6-75fd-4eda-b853-cb538da7cc56",
+						"exec": [
+							"pm.test(\"Body exists\", function () {\r",
+							"    pm.response.to.have.body;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Password\": \"mysupersecretpassphrasethatshouldbechanged\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/get/all",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"get",
+						"all"
+					]
+				},
+				"description": "`GET /get/all`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get single redirect information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a59ef4cd-db6f-4efc-8044-68a040388847",
+						"exec": [
+							"pm.test(\"Body exists\", function () {\r",
+							"    pm.response.to.have.body;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Password\": \"mysupersecretpassphrasethatshouldbechanged\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/get/newurl",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"get",
+						"newurl"
+					]
+				},
+				"description": "`GET /get/{id}`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get default",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b63b74e-a9c9-403c-aa4d-fd8f20eddba9",
+						"exec": [
+							"pm.test(\"Correct redirect\", function () {\r",
+							"    pm.response.to.have.status(302);\r",
+							"    pm.response.to.have.header(\"location\", \"https://example.com/\");\r",
+							"    pm.response.to.not.have.body;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/newurl12esadfa",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"newurl12esadfa"
+					]
+				},
+				"description": "`GET /{unknown id}`"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

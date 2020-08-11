@@ -1,0 +1,9 @@
+[Bb]in/
+[Oo]bj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/Redirect.NET/urls.db
+.vs/
+.vs-code/
+.idea/
